@@ -214,7 +214,7 @@ static void ImGui_ImplSDL3_UpdateIme()
             viewport_pos = viewport->Pos;
         SDL_Rect r;
         r.x = (int)(data->InputPos.x - viewport_pos.x);
-        r.y = (int)(data->InputPos.y - viewport_pos.y + data->InputLineHeight);
+        r.y = (int)(data->InputPos.y - viewport_pos.y);
         r.w = 1;
         r.h = (int)data->InputLineHeight;
         SDL_SetTextInputArea(window, &r, 0);
@@ -957,8 +957,8 @@ static void ImGui_ImplSDL3_GetWindowSizeAndFramebufferScale(SDL_Window* window, 
 #else
     int display_w, display_h;
     SDL_GetWindowSizeInPixels(window, &display_w, &display_h);
-    float fb_scale_x = (w > 0) ? (float)display_w / w : 1.0f;
-    float fb_scale_y = (h > 0) ? (float)display_h / h : 1.0f;
+    float fb_scale_x = (w > 0) ? (float)display_w / (float)w : 1.0f;
+    float fb_scale_y = (h > 0) ? (float)display_h / (float)h : 1.0f;
 #endif
 
     if (out_size != nullptr)
